@@ -26,6 +26,7 @@ export default {
       cnt: 0,
     }
   },
+  webrtc: null,
   debug: true
 }
 </script>
