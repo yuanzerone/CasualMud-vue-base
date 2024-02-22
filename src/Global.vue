@@ -17,6 +17,7 @@ export default {
     rightShow: 0,
     saveAload: false,
     loadOnly: false,
+    ModLoader: false,
     setting: 0,
     commonDialog: false,
   },

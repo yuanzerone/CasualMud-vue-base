@@ -5,6 +5,7 @@
   >
     <el-input v-model="room"></el-input>
     <el-button @click="connect">connect</el-button>
+    <el-text>在线人数：{{playerNum}}</el-text>
   </div>
 </template>
 
@@ -17,7 +18,8 @@ export default {
   data() {
     return {
       GLOBAL: inject("GLOBAL"),
-      room: ""
+      room: "",
+      playerNum: 0
     };
   },
   mounted() {},
@@ -25,8 +27,11 @@ export default {
     connect() {
       console.log(this.room);
       this.GLOBAL.webrtc = new WebrtcClient([{
-                urls: "stun:stun.ekiga.net"
+                urls: "stun:stun.l.google.com:19302"
             }],"wss://www.buaa-jj.cn/websocket",this.room);
+      $emitter.on('updatePlayerNum',(num) => {
+        this.playerNum = num;
+      })
     },
   }
 };

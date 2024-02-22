@@ -32,6 +32,15 @@
           </el-button>
         </el-row>
         <el-row justify="center">
+          <el-button
+              class="menu-button"
+              type="info"
+              @click="ModLoader"
+          >
+            - MOD加载器 -
+          </el-button>
+        </el-row>
+        <el-row justify="center">
           <el-button 
             class="menu-button"
             type="info"
@@ -81,6 +90,13 @@ export default {
       this.GLOBAL.frame.rightShow = 0;
       this.GLOBAL.frame.saveAload = true
       this.GLOBAL.frame.loadOnly = true
+    },
+    ModLoader() {
+      // 淡入淡出防护
+      if (this.enable === 0) return
+      this.GLOBAL.frame.leftShow = 0;
+      this.GLOBAL.frame.rightShow = 0;
+      this.GLOBAL.frame.ModLoader = true
     },
     toLib() {
       // 淡入淡出防护

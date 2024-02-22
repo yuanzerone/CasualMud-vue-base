@@ -1,5 +1,10 @@
 <template>
-  Detail
+  <div>
+    <el-text>{{eventMessage}}</el-text>
+    <el-button v-for="action in actions" type="text">
+      {{action}}
+    </el-button>
+  </div>
 </template>
 
 <script>
@@ -11,11 +16,16 @@ export default {
   },
   data() {
     return {
-      GLOBAL: inject('GLOBAL')
+      GLOBAL: inject('GLOBAL'),
+      eventMessage: "",
+      actions: []
     }
   },
   mounted() {
-
+    $emitter.on("updateSection",(data)=>{
+      this.eventMessage = data.message;
+      this.actions = data.actions;
+    })
   },
   methods: {
 

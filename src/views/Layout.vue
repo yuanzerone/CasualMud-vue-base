@@ -30,6 +30,7 @@
   </div>
 
   <SaveLoadMenu></SaveLoadMenu>
+  <ModLoader></ModLoader>
   <SettingMenu></SettingMenu>
   <!-- 数据界面 -->
   <div
@@ -53,6 +54,7 @@
 
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import ModLoader from "@/views/Base/ModLoader.vue";
 </script>
 
 <script>

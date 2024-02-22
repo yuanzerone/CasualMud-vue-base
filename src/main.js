@@ -6,6 +6,8 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import Global from './Global.vue'
+import mitt from 'mitt'
+window.$emitter = mitt()
 
 const app = createApp(App)
 

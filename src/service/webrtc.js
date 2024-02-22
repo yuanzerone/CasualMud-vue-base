@@ -25,8 +25,8 @@ export default class WebrtcClient {
         }
     }
 
-    getConnectionNum() {
-        return Object.keys(this.connectionList).length
+    updatePlayerNum() {
+        $emitter.emit('updatePlayerNum',Object.keys(this.connectionList).length);
     }
 
     createWebSocket(room) {
@@ -156,6 +156,7 @@ export default class WebrtcClient {
             peer: peer,
             channel: channel
         };
+        this.updatePlayerNum()
     }
 
     closeConnection(remoteUid, notify) {
@@ -167,6 +168,7 @@ export default class WebrtcClient {
             connection.peer.close()
         }
         delete this.connectionList[remoteUid]
+        this.updatePlayerNum()
         ElMessage(notify)
     }
 
@@ -181,6 +183,7 @@ export default class WebrtcClient {
             }
             delete this.connectionList[key]
         }
+        this.updatePlayerNum()
         ElMessage({
             title: '成功断开',
             message: '与其他人的连接已成功断开',
@@ -293,6 +296,7 @@ export default class WebrtcClient {
                         connection.peer.close();
                     }
                     delete this.connectionList[callFrom];
+                    this.updatePlayerNum()
                 }
                 const connection = new RTCPeerConnection({
                     iceServers: this.iceServers
@@ -332,6 +336,7 @@ export default class WebrtcClient {
                     }
                 }
                 this.connectionList[callFrom] = { peer: connection };
+                this.updatePlayerNum()
 
                 let candidate = new Promise((resolve, reject) => {
                     let candidateList = []
